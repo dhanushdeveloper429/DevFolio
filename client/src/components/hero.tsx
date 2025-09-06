@@ -1,6 +1,7 @@
 import { Download, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiLinkedin, SiGithub } from "react-icons/si";
+import TypingAnimation from "@/components/typing-animation";
 
 export default function Hero() {
   const scrollToContact = () => {
@@ -26,7 +27,13 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6" data-testid="hero-title">
-            <span className="gradient-text">Senior Developer</span>
+            <span className="gradient-text">
+              <TypingAnimation 
+                text="Senior.Developer.Portfolio..." 
+                speed={120}
+                className="inline-block"
+              />
+            </span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto" data-testid="hero-description">
             Enterprise software specialist with 7+ years of experience at Fortune 500 companies. 
