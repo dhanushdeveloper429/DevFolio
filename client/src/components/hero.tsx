@@ -2,8 +2,21 @@ import { Download, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiLinkedin, SiGithub } from "react-icons/si";
 import TypingAnimation from "@/components/typing-animation";
+import GlitchText from "@/components/glitch-text";
+import TerminalSimulator from "@/components/terminal-simulator";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
+  const [glitchTrigger, setGlitchTrigger] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setGlitchTrigger(prev => !prev);
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
@@ -23,66 +36,88 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center bg-gradient-to-br from-primary/5 to-secondary pt-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6" data-testid="hero-title">
-            <span className="gradient-text">
-              <TypingAnimation 
-                text="Senior.Developer.Portfolio..." 
-                speed={120}
-                className="inline-block"
-              />
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto" data-testid="hero-description">
-            Enterprise software specialist with 7+ years of experience at Fortune 500 companies. 
-            Expertise in scalable solutions, system architecture, and team leadership.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              onClick={handleDownloadResume}
-              className="bg-primary text-primary-foreground px-8 py-3 font-medium hover:bg-primary/90"
-              data-testid="button-download-resume"
-            >
-              <Download className="w-4 h-4 mr-2" />
-              Download Resume
-            </Button>
-            <Button 
-              variant="outline"
-              onClick={scrollToContact}
-              className="px-8 py-3 font-medium"
-              data-testid="button-contact"
-            >
-              Get In Touch
-            </Button>
+    <section className="min-h-screen flex items-center matrix-bg relative overflow-hidden pt-16">
+      <div className="absolute inset-0 bg-gradient-to-br from-background/50 via-transparent to-background/50"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Text Content */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-5xl md:text-7xl font-bold" data-testid="hero-title">
+                <div className="gradient-text cyberpunk-glow">
+                  <TypingAnimation 
+                    text="CYBER.DEV.MATRIX" 
+                    speed={150}
+                    className="inline-block"
+                  />
+                </div>
+              </h1>
+              <div className="text-2xl md:text-3xl">
+                <GlitchText 
+                  text="Elite_System_Architect.exe"
+                  className="text-accent cyberpunk-glow"
+                  trigger={glitchTrigger}
+                />
+              </div>
+            </div>
+            
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl" data-testid="hero-description">
+              <span className="text-primary">&gt;</span> Infiltrating enterprise systems for 7+ years<br/>
+              <span className="text-primary">&gt;</span> Architect of scalable digital fortresses<br/>
+              <span className="text-primary">&gt;</span> Fortune 500 code warrior
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
+                onClick={handleDownloadResume}
+                className="neon-border bg-primary/20 text-primary hover:bg-primary/30 px-8 py-3 font-medium transition-all duration-300 floating"
+                data-testid="button-download-resume"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Download.Resume.pkg
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={scrollToContact}
+                className="neon-border border-accent text-accent hover:bg-accent/20 px-8 py-3 font-medium transition-all duration-300"
+                data-testid="button-contact"
+              >
+                Initialize.Contact
+              </Button>
+            </div>
+            
+            <div className="flex space-x-6">
+              <a 
+                href="https://linkedin.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-2xl text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 cyberpunk-glow"
+                data-testid="link-linkedin"
+              >
+                <SiLinkedin />
+              </a>
+              <a 
+                href="https://github.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-2xl text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 cyberpunk-glow"
+                data-testid="link-github"
+              >
+                <SiGithub />
+              </a>
+              <a 
+                href="mailto:john.developer@email.com"
+                className="text-2xl text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 cyberpunk-glow"
+                data-testid="link-email"
+              >
+                <Mail />
+              </a>
+            </div>
           </div>
-          <div className="flex justify-center space-x-6 mt-8">
-            <a 
-              href="https://linkedin.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-              data-testid="link-linkedin"
-            >
-              <SiLinkedin className="text-2xl" />
-            </a>
-            <a 
-              href="https://github.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-              data-testid="link-github"
-            >
-              <SiGithub className="text-2xl" />
-            </a>
-            <a 
-              href="mailto:john.developer@email.com"
-              className="text-muted-foreground hover:text-primary transition-colors"
-              data-testid="link-email"
-            >
-              <Mail className="text-2xl" />
-            </a>
+          
+          {/* Right Column - Terminal */}
+          <div className="floating">
+            <TerminalSimulator />
           </div>
         </div>
       </div>

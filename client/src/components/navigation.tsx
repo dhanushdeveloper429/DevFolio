@@ -15,10 +15,10 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
+    <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-primary/30 z-50 neon-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="font-bold text-xl text-primary" data-testid="logo">Portfolio</div>
+          <div className="font-bold text-xl text-primary cyberpunk-glow" data-testid="logo">CYBER.PORTFOLIO</div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
