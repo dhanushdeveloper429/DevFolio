@@ -46,7 +46,7 @@ export default function Hero() {
               <h1 className="text-5xl md:text-7xl font-bold" data-testid="hero-title">
                 <div className="gradient-text cyberpunk-glow">
                   <TypingAnimation 
-                    text="CYBER.SENIOR.DEV.MATRIX" 
+                    text="Senior Developer" 
                     speed={150}
                     className="inline-block"
                   />
