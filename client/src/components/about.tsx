@@ -19,7 +19,7 @@ export default function About() {
             </div>
           </div>
           <div className="space-y-6">
-            <h3 className="text-2xl font-semibold" data-testid="about-role">Enterprise Software Specialist</h3>
+            <h3 className="text-2xl font-semibold" data-testid="about-role">Senior Enterprise Software Specialist</h3>
             <p className="text-muted-foreground leading-relaxed" data-testid="about-description-1">
               With over 7 years of experience in enterprise software development, I've had the privilege of working 
               with industry leaders including Anthem, American Express, Molina Healthcare, and Macy's. My expertise 

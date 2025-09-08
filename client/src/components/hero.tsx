@@ -46,7 +46,7 @@ export default function Hero() {
               <h1 className="text-5xl md:text-7xl font-bold" data-testid="hero-title">
                 <div className="gradient-text cyberpunk-glow">
                   <TypingAnimation 
-                    text="CYBER.DEV.MATRIX" 
+                    text="CYBER.SENIOR.DEV.MATRIX" 
                     speed={150}
                     className="inline-block"
                   />
@@ -54,7 +54,7 @@ export default function Hero() {
               </h1>
               <div className="text-2xl md:text-3xl">
                 <GlitchText 
-                  text="Elite_System_Architect.exe"
+                  text="Elite_Senior_System_Architect.exe"
                   className="text-accent cyberpunk-glow"
                   trigger={glitchTrigger}
                 />
