@@ -86,72 +86,73 @@ export default function Contact() {
         </div>
         
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-xl font-semibold mb-6" data-testid="contact-info-title">Contact Information</h3>
-              <div className="space-y-4">
-                <div className="flex items-center" data-testid="contact-email">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-                    <Mail className="text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Email</p>
-                    <p className="text-muted-foreground">john.developer@email.com</p>
-                  </div>
-                </div>
-                <div className="flex items-center" data-testid="contact-phone">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-                    <Phone className="text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Phone</p>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                  </div>
-                </div>
-                <div className="flex items-center" data-testid="contact-location">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-                    <MapPin className="text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Location</p>
-                    <p className="text-muted-foreground">Atlanta, GA</p>
-                  </div>
-                </div>
-              </div>
+          {/* Terminal Contact Info */}
+          <div className="bg-black/90 border border-primary shadow-[0_0_5px_rgba(59,130,246,0.2)] dark:border-cyan-400 dark:shadow-[0_0_10px_rgba(0,255,255,0.3)] rounded-lg p-6 font-mono text-sm backdrop-blur-sm">
+            <div className="flex items-center mb-4 text-primary dark:text-cyan-400">
+              <Mail className="w-4 h-4 mr-2" />
+              <span>contact_info@portfolio:~</span>
             </div>
             
-            <div>
-              <h4 className="font-medium mb-4" data-testid="social-links-title">Connect With Me</h4>
-              <div className="flex space-x-4">
-                <a 
-                  href="https://linkedin.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-                  data-testid="social-linkedin"
-                >
-                  <SiLinkedin />
-                </a>
-                <a 
-                  href="https://github.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-                  data-testid="social-github"
-                >
-                  <SiGithub />
-                </a>
-                <a 
-                  href="https://twitter.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-                  data-testid="social-twitter"
-                >
-                  <SiX />
-                </a>
+            <div className="space-y-2">
+              <div className="text-blue-400">[INFO] Personal contact protocol initialized</div>
+              <div className="text-gray-300">─────────────────────────────────────────</div>
+              
+              <div className="space-y-1">
+                <div className="text-cyan-400 dark:text-cyan-400">$ cat contact/email.txt</div>
+                <div className="text-green-400 ml-4" data-testid="contact-email">→ john.developer@email.com</div>
+                
+                <div className="text-cyan-400 dark:text-cyan-400">$ cat contact/phone.txt</div>
+                <div className="text-green-400 ml-4" data-testid="contact-phone">→ +1 (555) 123-4567</div>
+                
+                <div className="text-cyan-400 dark:text-cyan-400">$ cat contact/location.txt</div>
+                <div className="text-green-400 ml-4" data-testid="contact-location">→ Atlanta, GA</div>
               </div>
+              
+              <div className="text-gray-300 mt-4">─────────────────────────────────────────</div>
+              <div className="text-blue-400">[SOCIAL] External connection endpoints:</div>
+              
+              <div className="space-y-1 mt-2">
+                <div className="flex items-center">
+                  <span className="text-cyan-400 dark:text-cyan-400">$ curl -X GET </span>
+                  <a 
+                    href="https://linkedin.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-green-400 hover:text-primary transition-colors ml-1"
+                    data-testid="social-linkedin"
+                  >
+                    linkedin.com/in/profile
+                  </a>
+                </div>
+                <div className="flex items-center">
+                  <span className="text-cyan-400 dark:text-cyan-400">$ git clone </span>
+                  <a 
+                    href="https://github.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-green-400 hover:text-primary transition-colors ml-1"
+                    data-testid="social-github"
+                  >
+                    github.com/developer
+                  </a>
+                </div>
+                <div className="flex items-center">
+                  <span className="text-cyan-400 dark:text-cyan-400">$ ping </span>
+                  <a 
+                    href="https://twitter.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-green-400 hover:text-primary transition-colors ml-1"
+                    data-testid="social-twitter"
+                  >
+                    twitter.com/handle
+                  </a>
+                </div>
+              </div>
+              
+              <div className="text-gray-300 mt-4">─────────────────────────────────────────</div>
+              <div className="text-yellow-400">[STATUS] All communication channels online</div>
+              <div className="text-green-400">[READY] Awaiting incoming connections...</div>
             </div>
           </div>
 
