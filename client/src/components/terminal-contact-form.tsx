@@ -44,7 +44,7 @@ export default function TerminalContactForm() {
       return response.json();
     },
     onSuccess: () => {
-      setHistory(prev => [...prev, '', '> Message sent successfully!', '> Thank you for reaching out. I\'ll get back to you soon.', '']);
+      setHistory(prev => [...prev, '', '→ Message sent successfully!', '→ Thank you for reaching out. I\'ll get back to you soon.', '']);
       setIsSubmitting(false);
       setIsComplete(true);
       toast({
@@ -57,7 +57,7 @@ export default function TerminalContactForm() {
       }, 3000);
     },
     onError: (error: any) => {
-      setHistory(prev => [...prev, '', '> Error: Failed to send message', '> Please try again later.', '']);
+      setHistory(prev => [...prev, '', '→ Error: Failed to send message', '→ Please try again later.', '']);
       setIsSubmitting(false);
       toast({
         title: "Failed to send message",
@@ -119,7 +119,7 @@ export default function TerminalContactForm() {
     const field = step.field as keyof ContactFormData;
     
     // Add to history
-    setHistory(prev => [...prev, `$ ${step.prompt}`, `> ${currentInput}`]);
+    setHistory(prev => [...prev, `$ ${step.prompt}`, `→ ${currentInput}`]);
     
     // Update form data
     setFormData(prev => ({ ...prev, [field]: currentInput }));
@@ -139,7 +139,7 @@ export default function TerminalContactForm() {
   const submitForm = () => {
     const finalFormData = { ...formData, [steps[currentStep].field]: currentInput };
     
-    setHistory(prev => [...prev, '', '> Validating input...', '> Transmitting message...']);
+    setHistory(prev => [...prev, '', '→ Validating input...', '→ Transmitting message...']);
     setIsSubmitting(true);
     
     contactMutation.mutate(finalFormData);
@@ -159,15 +159,15 @@ export default function TerminalContactForm() {
         {/* Initial message */}
         {history.length === 0 && (
           <div className="text-gray-300 mb-4">
-            <div>> Initiating secure contact protocol...</div>
-            <div>> Please provide the following information:</div>
+            <div>→ Initiating secure contact protocol...</div>
+            <div>→ Please provide the following information:</div>
             <div></div>
           </div>
         )}
         
         {/* Command history */}
         {history.map((line, index) => (
-          <div key={index} className={line.startsWith('$') ? 'text-cyan-400 dark:text-cyan-400' : line.startsWith('>') ? 'text-gray-300' : 'text-green-400'}>
+          <div key={index} className={line.startsWith('$') ? 'text-cyan-400 dark:text-cyan-400' : line.startsWith('→') ? 'text-gray-300' : 'text-green-400'}>
             {line}
           </div>
         ))}
@@ -207,8 +207,8 @@ export default function TerminalContactForm() {
         {/* Completion message */}
         {isComplete && (
           <div className="text-gray-300 mt-4">
-            <div>> Session complete. You may close this terminal.</div>
-            <div>> Restarting in 3 seconds...</div>
+            <div>→ Session complete. You may close this terminal.</div>
+            <div>→ Restarting in 3 seconds...</div>
           </div>
         )}
         
