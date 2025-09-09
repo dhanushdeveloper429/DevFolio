@@ -118,74 +118,7 @@ html {
   background: linear-gradient(to bottom, hsl(180, 100%, 50%), hsl(300, 100%, 50%));
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, hsl(221.2, 83.2%, 53.3%), hsl(262.1, 83.3%, 57.8%), hsl(221.2, 83.2%, 53.3%));
-  background-size: 200% 200%;
-  animation: gradientShift 3s ease infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .gradient-text {
-  background: linear-gradient(135deg, hsl(180, 100%, 50%), hsl(300, 100%, 50%), hsl(180, 100%, 50%));
-  background-size: 200% 200%;
-  animation: gradientShift 3s ease infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.cyberpunk-glow {
-  text-shadow: none;
-}
-
-.dark .cyberpunk-glow {
-  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
-}
-
-.neon-border {
-  border: 1px solid hsl(221.2, 83.2%, 53.3%);
-  box-shadow: 
-    0 0 5px rgba(59, 130, 246, 0.2),
-    inset 0 0 5px rgba(59, 130, 246, 0.1);
-}
-
-.dark .neon-border {
-  border: 1px solid;
-  border-image: linear-gradient(45deg, hsl(180, 100%, 50%), hsl(300, 100%, 50%), hsl(180, 100%, 50%)) 1;
-  box-shadow: 
-    0 0 10px rgba(0, 255, 255, 0.3),
-    inset 0 0 10px rgba(0, 255, 255, 0.1);
-}
-
-.card-3d {
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease;
-}
-
-.card-3d:hover {
-  transform: rotateY(10deg) rotateX(10deg) translateZ(20px);
-}
-
-.matrix-bg {
-  background: 
-    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-    linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.02) 25%, rgba(59, 130, 246, 0.02) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.02) 75%, rgba(59, 130, 246, 0.02) 76%, transparent 77%, transparent),
-    linear-gradient(90deg, transparent 24%, rgba(59, 130, 246, 0.02) 25%, rgba(59, 130, 246, 0.02) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.02) 75%, rgba(59, 130, 246, 0.02) 76%, transparent 77%, transparent);
-  background-size: 100px 100px, 50px 50px, 50px 50px;
-  animation: matrixMove 20s linear infinite;
-}
-
-.dark .matrix-bg {
-  background: 
-    radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-    linear-gradient(0deg, transparent 24%, rgba(0, 255, 255, 0.05) 25%, rgba(0, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.05) 75%, rgba(0, 255, 255, 0.05) 76%, transparent 77%, transparent),
-    linear-gradient(90deg, transparent 24%, rgba(0, 255, 255, 0.05) 25%, rgba(0, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.05) 75%, rgba(0, 255, 255, 0.05) 76%, transparent 77%, transparent);
-  background-size: 100px 100px, 50px 50px, 50px 50px;
-  animation: matrixMove 20s linear infinite;
-}
-
+/* Essential animations that can't be replaced with Tailwind */
 @keyframes gradientShift {
   0%, 100% {
     background-position: 0% 50%;
@@ -213,6 +146,21 @@ html {
   }
 }
 
-.floating {
-  animation: float 3s ease-in-out infinite;
+/* Complex backgrounds that need custom CSS */
+.matrix-bg-light {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.02) 25%, rgba(59, 130, 246, 0.02) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.02) 75%, rgba(59, 130, 246, 0.02) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, rgba(59, 130, 246, 0.02) 25%, rgba(59, 130, 246, 0.02) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.02) 75%, rgba(59, 130, 246, 0.02) 76%, transparent 77%, transparent);
+  background-size: 100px 100px, 50px 50px, 50px 50px;
+  animation: matrixMove 20s linear infinite;
+}
+
+.matrix-bg-dark {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+    linear-gradient(0deg, transparent 24%, rgba(0, 255, 255, 0.05) 25%, rgba(0, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.05) 75%, rgba(0, 255, 255, 0.05) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, rgba(0, 255, 255, 0.05) 25%, rgba(0, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.05) 75%, rgba(0, 255, 255, 0.05) 76%, transparent 77%, transparent);
+  background-size: 100px 100px, 50px 50px, 50px 50px;
+  animation: matrixMove 20s linear infinite;
 }

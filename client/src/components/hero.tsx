@@ -36,7 +36,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center matrix-bg relative overflow-hidden pt-16">
+    <section className="min-h-screen flex items-center matrix-bg-light dark:matrix-bg-dark relative overflow-hidden pt-16">
       <div className="absolute inset-0 bg-gradient-to-br from-background/50 via-transparent to-background/50"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -44,7 +44,7 @@ export default function Hero() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-5xl md:text-7xl font-bold" data-testid="hero-title">
-                <div className="gradient-text cyberpunk-glow">
+                <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 dark:from-cyan-400 dark:via-purple-500 dark:to-cyan-400 bg-[length:200%_200%] animate-[gradientShift_3s_ease_infinite] bg-clip-text text-transparent dark:drop-shadow-[0_0_10px_currentColor]">
                   <TypingAnimation 
                     text="Senior Developer" 
                     speed={150}
@@ -55,7 +55,7 @@ export default function Hero() {
               <div className="text-2xl md:text-3xl">
                 <GlitchText 
                   text="Elite_Senior_System_Architect.exe"
-                  className="text-accent cyberpunk-glow"
+                  className="text-accent dark:drop-shadow-[0_0_10px_currentColor]"
                   trigger={glitchTrigger}
                 />
               </div>
@@ -70,7 +70,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 onClick={handleDownloadResume}
-                className="neon-border bg-primary/20 text-primary hover:bg-primary/30 px-8 py-3 font-medium transition-all duration-300 floating"
+                className="border border-primary shadow-[0_0_5px_rgba(59,130,246,0.2)] dark:border-cyan-400 dark:shadow-[0_0_10px_rgba(0,255,255,0.3)] bg-primary/20 text-primary hover:bg-primary/30 px-8 py-3 font-medium transition-all duration-300 animate-[float_3s_ease-in-out_infinite]"
                 data-testid="button-download-resume"
               >
                 <Download className="w-4 h-4 mr-2" />
@@ -79,7 +79,7 @@ export default function Hero() {
               <Button 
                 variant="outline"
                 onClick={scrollToContact}
-                className="neon-border border-accent text-accent hover:bg-accent/20 px-8 py-3 font-medium transition-all duration-300"
+                className="border border-accent shadow-[0_0_5px_rgba(168,85,247,0.2)] dark:border-cyan-400 dark:shadow-[0_0_10px_rgba(0,255,255,0.3)] text-accent hover:bg-accent/20 px-8 py-3 font-medium transition-all duration-300"
                 data-testid="button-contact"
               >
                 Initialize.Contact
@@ -91,7 +91,7 @@ export default function Hero() {
                 href="https://linkedin.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-2xl text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 cyberpunk-glow"
+                className="text-2xl text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 dark:hover:drop-shadow-[0_0_10px_currentColor]"
                 data-testid="link-linkedin"
               >
                 <SiLinkedin />
@@ -100,14 +100,14 @@ export default function Hero() {
                 href="https://github.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-2xl text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 cyberpunk-glow"
+                className="text-2xl text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 dark:hover:drop-shadow-[0_0_10px_currentColor]"
                 data-testid="link-github"
               >
                 <SiGithub />
               </a>
               <a 
                 href="mailto:john.developer@email.com"
-                className="text-2xl text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 cyberpunk-glow"
+                className="text-2xl text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 dark:hover:drop-shadow-[0_0_10px_currentColor]"
                 data-testid="link-email"
               >
                 <Mail />
@@ -116,7 +116,7 @@ export default function Hero() {
           </div>
           
           {/* Right Column - Terminal */}
-          <div className="floating">
+          <div className="animate-[float_3s_ease-in-out_infinite]">
             <TerminalSimulator />
           </div>
         </div>
