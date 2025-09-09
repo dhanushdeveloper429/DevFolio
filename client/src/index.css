@@ -17,8 +17,8 @@
   --secondary-foreground: hsl(222.2, 47.4%, 11.2%);
   --muted: hsl(210, 40%, 96%);
   --muted-foreground: hsl(215.4, 16.3%, 46.9%);
-  --accent: hsl(210, 40%, 96%);
-  --accent-foreground: hsl(222.2, 47.4%, 11.2%);
+  --accent: hsl(262.1, 83.3%, 57.8%);
+  --accent-foreground: hsl(210, 40%, 98%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(210, 40%, 98%);
   --border: hsl(214.3, 31.8%, 91.4%);
@@ -119,6 +119,15 @@ html {
 }
 
 .gradient-text {
+  background: linear-gradient(135deg, hsl(221.2, 83.2%, 53.3%), hsl(262.1, 83.3%, 57.8%), hsl(221.2, 83.2%, 53.3%));
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .gradient-text {
   background: linear-gradient(135deg, hsl(180, 100%, 50%), hsl(300, 100%, 50%), hsl(180, 100%, 50%));
   background-size: 200% 200%;
   animation: gradientShift 3s ease infinite;
@@ -128,10 +137,21 @@ html {
 }
 
 .cyberpunk-glow {
+  text-shadow: none;
+}
+
+.dark .cyberpunk-glow {
   text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
 }
 
 .neon-border {
+  border: 1px solid hsl(221.2, 83.2%, 53.3%);
+  box-shadow: 
+    0 0 5px rgba(59, 130, 246, 0.2),
+    inset 0 0 5px rgba(59, 130, 246, 0.1);
+}
+
+.dark .neon-border {
   border: 1px solid;
   border-image: linear-gradient(45deg, hsl(180, 100%, 50%), hsl(300, 100%, 50%), hsl(180, 100%, 50%)) 1;
   box-shadow: 
@@ -149,6 +169,15 @@ html {
 }
 
 .matrix-bg {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.02) 25%, rgba(59, 130, 246, 0.02) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.02) 75%, rgba(59, 130, 246, 0.02) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, rgba(59, 130, 246, 0.02) 25%, rgba(59, 130, 246, 0.02) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.02) 75%, rgba(59, 130, 246, 0.02) 76%, transparent 77%, transparent);
+  background-size: 100px 100px, 50px 50px, 50px 50px;
+  animation: matrixMove 20s linear infinite;
+}
+
+.dark .matrix-bg {
   background: 
     radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
     linear-gradient(0deg, transparent 24%, rgba(0, 255, 255, 0.05) 25%, rgba(0, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, 0.05) 75%, rgba(0, 255, 255, 0.05) 76%, transparent 77%, transparent),

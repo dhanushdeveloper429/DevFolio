@@ -62,9 +62,9 @@ export default function Hero() {
             </div>
             
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl" data-testid="hero-description">
-              <span className="text-primary">&gt;</span> Infiltrating enterprise systems for 7+ years<br/>
-              <span className="text-primary">&gt;</span> Architect of scalable digital fortresses<br/>
-              <span className="text-primary">&gt;</span> Fortune 500 code warrior
+              <span className="text-primary">&gt;</span> Enterprise software specialist with 7+ years of experience<br/>
+              <span className="text-primary">&gt;</span> Architect of scalable solutions and system architecture<br/>
+              <span className="text-primary">&gt;</span> Fortune 500 team leadership expertise
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
