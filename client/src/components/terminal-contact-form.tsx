@@ -44,24 +44,39 @@ export default function TerminalContactForm() {
       return response.json();
     },
     onSuccess: () => {
-      setHistory(prev => [...prev, '', '→ Message sent successfully!', '→ Thank you for reaching out. I\'ll get back to you soon.', '']);
+      setHistory(prev => [...prev, 
+        '', 
+        '[SUCCESS] Message transmission complete',
+        '[INFO] Secure channel established',
+        '[CONF] Message encrypted and delivered to target',
+        '[ACK] Response expected within 24-48 hours',
+        '[STATUS] Connection terminated successfully',
+        ''
+      ]);
       setIsSubmitting(false);
       setIsComplete(true);
       toast({
-        title: "Message sent successfully!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+        title: "Message transmitted successfully!",
+        description: "Secure connection established. Response incoming within 24-48 hours.",
       });
-      // Reset form after 3 seconds
+      // Reset form after 5 seconds
       setTimeout(() => {
         resetForm();
-      }, 3000);
+      }, 5000);
     },
     onError: (error: any) => {
-      setHistory(prev => [...prev, '', '→ Error: Failed to send message', '→ Please try again later.', '']);
+      setHistory(prev => [...prev, 
+        '', 
+        '[ERROR] Transmission failed',
+        '[DEBUG] Connection timeout or server unreachable',
+        '[RETRY] Please reinitialize contact protocol',
+        '[STATUS] Session terminated with errors',
+        ''
+      ]);
       setIsSubmitting(false);
       toast({
-        title: "Failed to send message",
-        description: error.message || "Please try again later.",
+        title: "Transmission failed",
+        description: "Connection error detected. Please retry contact protocol.",
         variant: "destructive",
       });
     },
@@ -139,7 +154,14 @@ export default function TerminalContactForm() {
   const submitForm = () => {
     const finalFormData = { ...formData, [steps[currentStep].field]: currentInput };
     
-    setHistory(prev => [...prev, '', '→ Validating input...', '→ Transmitting message...']);
+    setHistory(prev => [...prev, 
+      '', 
+      '[INIT] Validating contact payload...',
+      '[SCAN] Running security checks...',
+      '[ENCRYPT] Applying end-to-end encryption...',
+      '[SEND] Establishing secure connection...',
+      '[WAIT] Transmitting to target server...'
+    ]);
     setIsSubmitting(true);
     
     contactMutation.mutate(finalFormData);
@@ -159,18 +181,36 @@ export default function TerminalContactForm() {
         {/* Initial message */}
         {history.length === 0 && (
           <div className="text-gray-300 mb-4">
-            <div>→ Initiating secure contact protocol...</div>
-            <div>→ Please provide the following information:</div>
+            <div>[INIT] Initiating secure contact protocol...</div>
+            <div>[INFO] Authentication required for message transmission</div>
+            <div>[PROMPT] Please provide the following credentials:</div>
             <div></div>
           </div>
         )}
         
         {/* Command history */}
-        {history.map((line, index) => (
-          <div key={index} className={line.startsWith('$') ? 'text-cyan-400 dark:text-cyan-400' : line.startsWith('→') ? 'text-gray-300' : 'text-green-400'}>
-            {line}
-          </div>
-        ))}
+        {history.map((line, index) => {
+          let className = 'text-green-400';
+          if (line.startsWith('$')) {
+            className = 'text-cyan-400 dark:text-cyan-400';
+          } else if (line.startsWith('→')) {
+            className = 'text-gray-300';
+          } else if (line.startsWith('[SUCCESS]') || line.startsWith('[CONF]') || line.startsWith('[ACK]')) {
+            className = 'text-green-400';
+          } else if (line.startsWith('[ERROR]') || line.startsWith('[DEBUG]') || line.startsWith('[RETRY]')) {
+            className = 'text-red-400';
+          } else if (line.startsWith('[INFO]') || line.startsWith('[STATUS]') || line.startsWith('[PROMPT]')) {
+            className = 'text-blue-400';
+          } else if (line.startsWith('[INIT]') || line.startsWith('[SCAN]') || line.startsWith('[ENCRYPT]') || line.startsWith('[SEND]') || line.startsWith('[WAIT]')) {
+            className = 'text-yellow-400';
+          }
+          
+          return (
+            <div key={index} className={className}>
+              {line}
+            </div>
+          );
+        })}
         
         {/* Current input */}
         {!isComplete && !isSubmitting && currentStep < steps.length && (
@@ -206,9 +246,10 @@ export default function TerminalContactForm() {
         
         {/* Completion message */}
         {isComplete && (
-          <div className="text-gray-300 mt-4">
-            <div>→ Session complete. You may close this terminal.</div>
-            <div>→ Restarting in 3 seconds...</div>
+          <div className="text-blue-400 mt-4">
+            <div>[COMPLETE] Contact session terminated successfully</div>
+            <div>[AUTO] Reinitializing terminal in 5 seconds...</div>
+            <div>[SYSTEM] Thank you for using SecureContact v2.1</div>
           </div>
         )}
         
