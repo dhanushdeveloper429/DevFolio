@@ -52,13 +52,6 @@ export default function Hero() {
                   />
                 </div>
               </h1>
-              <div className="text-2xl md:text-3xl">
-                <GlitchText 
-                  text="Elite_Senior_System_Architect.exe"
-                  className="text-accent dark:drop-shadow-[0_0_10px_currentColor]"
-                  trigger={glitchTrigger}
-                />
-              </div>
             </div>
             
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl" data-testid="hero-description">
