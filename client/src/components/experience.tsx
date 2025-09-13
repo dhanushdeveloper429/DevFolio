@@ -62,7 +62,7 @@ const experiences: ExperienceItem[] = [
   {
     id: "macys",
     company: "Macy's Inc.",
-    role: "Developer Intern",
+    role: "Software Developer",
     startDate: "May 2015",
     endDate: "Mar 2017",
     description: "Developed e-commerce features and inventory management tools while learning enterprise development practices.",
