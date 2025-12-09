@@ -1,6 +1,7 @@
 import { Heart, CreditCard, Building2, ShoppingBag } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 
 interface ExperienceItem {
   id: string;
@@ -82,17 +83,24 @@ export default function Experience() {
             A journey through enterprise software development at industry-leading companies
           </p>
         </div>
-        
+
         <div className="relative">
           {/* Timeline line */}
           <div className="absolute left-8 md:left-1/2 transform md:-translate-x-px h-full w-0.5 timeline-line"></div>
-          
+
           {/* Timeline items */}
           <div className="space-y-12">
             {experiences.map((exp, index) => (
-              <div key={exp.id} className="relative flex items-center md:justify-between">
+              <motion.div
+                key={exp.id}
+                initial={{ opacity: 0, x: exp.isLeft ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="relative flex items-center md:justify-between"
+              >
                 <div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background"></div>
-                
+
                 {exp.isLeft ? (
                   <>
                     <div className="ml-20 md:ml-0 md:w-5/12">
@@ -158,7 +166,7 @@ export default function Experience() {
                     </div>
                   </>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useThemeLogic } from '@/hooks/use-theme-logic';
 
 interface Particle {
   x: number;
@@ -8,12 +9,16 @@ interface Particle {
   size: number;
   opacity: number;
   color: string;
+  type?: 'snow' | 'leaf' | 'ghost' | 'standard';
+  rotation?: number;
+  rotationSpeed?: number;
 }
 
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const animationRef = useRef<number>();
+  const { theme, isSnowing } = useThemeLogic();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -30,19 +35,54 @@ export default function ParticleBackground() {
     const createParticles = () => {
       const particles: Particle[] = [];
       const particleCount = Math.floor((canvas.width * canvas.height) / 10000);
-      
+
       for (let i = 0; i < particleCount; i++) {
+        let color = `hsl(${180 + Math.random() * 60}, 70%, 60%)`;
+        let size = Math.random() * 2 + 1;
+        let vx = (Math.random() - 0.5) * 0.5;
+        let vy = (Math.random() - 0.5) * 0.5;
+        let type: Particle['type'] = 'standard';
+        let rotation = 0;
+        let rotationSpeed = 0;
+
+        if (isSnowing || theme === 'christmas') {
+          type = 'snow';
+          color = 'rgba(255, 255, 255, 0.8)';
+          size = Math.random() * 3 + 1;
+          vx = (Math.random() - 0.5) * 0.5;
+          vy = Math.random() * 1 + 0.5; // Fall down
+        } else if (theme === 'thanksgiving') {
+          type = 'leaf';
+          // Autumn colors: Orange, Red, Brown, Yellow
+          const hue = Math.random() > 0.5 ? 20 + Math.random() * 30 : 0 + Math.random() * 20;
+          color = `hsl(${hue}, 80%, 50%)`;
+          size = Math.random() * 4 + 2;
+          vx = (Math.random() - 0.5) * 1;
+          vy = Math.random() * 1 + 0.5;
+          rotation = Math.random() * 360;
+          rotationSpeed = (Math.random() - 0.5) * 2;
+        } else if (theme === 'halloween') {
+          type = 'ghost';
+          // Purple and Orange
+          const isPurple = Math.random() > 0.5;
+          color = isPurple ? `hsl(270, 70%, 60%)` : `hsl(30, 90%, 50%)`;
+          size = Math.random() * 3 + 1;
+        }
+
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 2 + 1,
+          vx,
+          vy,
+          size,
           opacity: Math.random() * 0.5 + 0.2,
-          color: `hsl(${180 + Math.random() * 60}, 70%, 60%)`
+          color,
+          type,
+          rotation,
+          rotationSpeed
         });
       }
-      
+
       particlesRef.current = particles;
     };
 
@@ -51,8 +91,25 @@ export default function ParticleBackground() {
         particle.x += particle.vx;
         particle.y += particle.vy;
 
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+        if (particle.type === 'snow' || particle.type === 'leaf') {
+          // Reset to top if fell off bottom
+          if (particle.y > canvas.height) {
+            particle.y = -10;
+            particle.x = Math.random() * canvas.width;
+          }
+          // Wrap sides
+          if (particle.x > canvas.width) particle.x = 0;
+          if (particle.x < 0) particle.x = canvas.width;
+
+          if (particle.type === 'leaf') {
+            particle.rotation! += particle.rotationSpeed!;
+            particle.x += Math.sin(Date.now() * 0.001 + particle.y * 0.01) * 0.5; // Sway
+          }
+        } else {
+          // Standard/Halloween bounce behavior
+          if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+          if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+        }
 
         particle.opacity = 0.2 + Math.sin(Date.now() * 0.001 + particle.x * 0.01) * 0.3;
       });
@@ -60,11 +117,24 @@ export default function ParticleBackground() {
 
     const drawParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       particlesRef.current.forEach(particle => {
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.save();
+        ctx.translate(particle.x, particle.y);
+        if (particle.type === 'leaf') {
+          ctx.rotate((particle.rotation! * Math.PI) / 180);
+          // Draw Leaf shape (ellipse)
+          ctx.beginPath();
+          ctx.ellipse(0, 0, particle.size, particle.size / 2, 0, 0, Math.PI * 2);
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, particle.size, 0, Math.PI * 2);
+        }
+        ctx.restore();
+
         ctx.fillStyle = particle.color.replace('60%)', `60%, ${particle.opacity})`);
+        if (particle.type === 'snow') ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
+
         ctx.fill();
       });
 
@@ -108,7 +178,7 @@ export default function ParticleBackground() {
       }
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, []);
+  }, [theme, isSnowing]);
 
   return (
     <canvas

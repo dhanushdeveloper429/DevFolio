@@ -1,5 +1,6 @@
 import { type User, type InsertUser, type ContactMessage, type InsertContactMessage } from "@shared/schema";
-import { randomUUID } from "crypto";
+import { Contact } from "./models/Contact";
+import { connectDB } from "./db";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
@@ -9,46 +10,53 @@ export interface IStorage {
   getContactMessages(): Promise<ContactMessage[]>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-  private contactMessages: Map<string, ContactMessage>;
-
+export class MongoStorage implements IStorage {
   constructor() {
-    this.users = new Map();
-    this.contactMessages = new Map();
+    connectDB();
   }
 
   async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+    // Placeholder - return undefined as we are not using Mongo for Users yet
+    return undefined;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    // Placeholder
+    return undefined;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+    // Placeholder - not implemented for Mongo yet
+    throw new Error("User storage not implemented in MongoStorage");
   }
 
   async createContactMessage(insertMessage: InsertContactMessage): Promise<ContactMessage> {
-    const id = randomUUID();
-    const message: ContactMessage = { 
-      ...insertMessage, 
-      id, 
-      createdAt: new Date() 
-    };
-    this.contactMessages.set(id, message);
-    return message;
+    const contact = new Contact(insertMessage);
+    await contact.save();
+    // Mongoose document to plain object conversion usually needed, but for simple interface matching:
+    return {
+      id: (contact._id as any).toString(),
+      firstName: contact.firstName,
+      lastName: contact.lastName,
+      email: contact.email,
+      subject: contact.subject,
+      message: contact.message,
+      createdAt: contact.createdAt
+    } as ContactMessage;
   }
 
   async getContactMessages(): Promise<ContactMessage[]> {
-    return Array.from(this.contactMessages.values());
+    const contacts = await Contact.find().sort({ createdAt: -1 });
+    return contacts.map(contact => ({
+      id: (contact._id as any).toString(),
+      firstName: contact.firstName,
+      lastName: contact.lastName,
+      email: contact.email,
+      subject: contact.subject,
+      message: contact.message,
+      createdAt: contact.createdAt
+    })) as ContactMessage[];
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new MongoStorage();
