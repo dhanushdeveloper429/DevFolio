@@ -1,4 +1,4 @@
-import { Download, Mail } from "lucide-react";
+import { Download, Mail, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiLinkedin, SiGithub } from "react-icons/si";
 import TypingAnimation from "@/components/typing-animation";
@@ -10,6 +10,8 @@ import { personalData } from "@/data";
 
 export default function Hero() {
   const [glitchTrigger, setGlitchTrigger] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadProgress, setDownloadProgress] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,7 +29,31 @@ export default function Hero() {
   };
 
   const handleDownloadResume = () => {
-    window.location.href = "https://drive.usercontent.google.com/u/1/uc?id=1T41ZuMP2eev2poc36nx3bgBFCpIutfti&export=download";
+    if (isDownloading) return;
+
+    setIsDownloading(true);
+    setDownloadProgress(0);
+
+    // Simulate download progress
+    const duration = 2000; // 2 seconds simulation
+    const interval = 20;
+    const steps = duration / interval;
+    const increment = 100 / steps;
+
+    const timer = setInterval(() => {
+      setDownloadProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(timer);
+          window.location.href = "https://drive.usercontent.google.com/u/1/uc?id=1T41ZuMP2eev2poc36nx3bgBFCpIutfti&export=download";
+          setTimeout(() => {
+            setIsDownloading(false);
+            setDownloadProgress(0);
+          }, 1000);
+          return 100;
+        }
+        return Math.min(prev + increment, 100);
+      });
+    }, interval);
   };
 
   return (
@@ -61,11 +87,32 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 onClick={handleDownloadResume}
-                className="border border-primary shadow-[0_0_5px_rgba(59,130,246,0.2)] dark:border-cyan-400 dark:shadow-[0_0_10px_rgba(0,255,255,0.3)] bg-primary/20 text-primary hover:bg-primary/30 px-8 py-3 font-medium transition-all duration-300 animate-[float_3s_ease-in-out_infinite]"
+                disabled={isDownloading}
+                className="relative overflow-hidden border border-primary shadow-[0_0_5px_rgba(59,130,246,0.2)] dark:border-cyan-400 dark:shadow-[0_0_10px_rgba(0,255,255,0.3)] bg-primary/20 text-primary hover:bg-primary/30 px-8 py-3 font-medium transition-all duration-300 animate-[float_3s_ease-in-out_infinite] disabled:opacity-100 disabled:cursor-not-allowed"
                 data-testid="button-download-resume"
               >
-                <Download className="w-4 h-4 mr-2" />
-                Download.Resume.pkg
+                {/* Progress Bar Background */}
+                {isDownloading && (
+                  <div
+                    className="absolute inset-0 bg-primary/40 transition-all duration-100 ease-linear z-0"
+                    style={{ width: `${downloadProgress}%` }}
+                  />
+                )}
+
+                {/* Button Content */}
+                <span className="relative z-10 flex items-center">
+                  {isDownloading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Downloading... {Math.round(downloadProgress)}%
+                    </>
+                  ) : (
+                    <>
+                      <Download className="w-4 h-4 mr-2" />
+                      Download.Resume.pkg
+                    </>
+                  )}
+                </span>
               </Button>
               <Button
                 variant="outline"
