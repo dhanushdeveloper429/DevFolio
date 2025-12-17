@@ -4,6 +4,7 @@ import { SiLinkedin, SiGithub } from "react-icons/si";
 import TypingAnimation from "@/components/typing-animation";
 import GlitchText from "@/components/glitch-text";
 import TerminalSimulator from "@/components/terminal-simulator";
+import ParticleBackground from "@/components/particle-background";
 import { useState, useEffect } from "react";
 import { personalData } from "@/data";
 
@@ -37,9 +38,10 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center matrix-bg-light dark:matrix-bg-dark relative overflow-hidden pt-16">
-      <div className="absolute inset-0 bg-gradient-to-br from-background/50 via-transparent to-background/50"></div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+    <section className="min-h-screen flex items-center relative overflow-hidden pt-16">
+      <ParticleBackground />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/10 to-background/80 pointer-events-none z-10"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text Content */}
           <div className="space-y-8">

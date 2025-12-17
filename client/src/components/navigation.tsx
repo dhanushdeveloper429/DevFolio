@@ -18,39 +18,39 @@ export default function Navigation() {
     <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-primary shadow-[0_0_5px_rgba(59,130,246,0.2)] dark:border-cyan-400 dark:shadow-[0_0_10px_rgba(0,255,255,0.3)] z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="font-bold text-xl text-primary dark:drop-shadow-[0_0_10px_currentColor]" data-testid="logo">CYBER.PORTFOLIO</div>
-          
+          <div className="font-bold text-xl text-primary dark:drop-shadow-[0_0_10px_currentColor]" data-testid="logo">FULL STACK.PORTFOLIO</div>
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <button 
+            <button
               onClick={() => scrollToSection('about')}
               className="text-muted-foreground hover:text-foreground transition-colors"
               data-testid="nav-about"
             >
               About
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('experience')}
               className="text-muted-foreground hover:text-foreground transition-colors"
               data-testid="nav-experience"
             >
               Experience
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('skills')}
               className="text-muted-foreground hover:text-foreground transition-colors"
               data-testid="nav-skills"
             >
               Skills
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('projects')}
               className="text-muted-foreground hover:text-foreground transition-colors"
               data-testid="nav-projects"
             >
               Projects
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('contact')}
               className="text-muted-foreground hover:text-foreground transition-colors"
               data-testid="nav-contact"
@@ -78,35 +78,35 @@ export default function Navigation() {
         {isMobileMenuOpen && (
           <div className="md:hidden pb-4">
             <div className="flex flex-col space-y-3">
-              <button 
+              <button
                 onClick={() => scrollToSection('about')}
                 className="text-muted-foreground hover:text-foreground transition-colors text-left"
                 data-testid="mobile-nav-about"
               >
                 About
               </button>
-              <button 
+              <button
                 onClick={() => scrollToSection('experience')}
                 className="text-muted-foreground hover:text-foreground transition-colors text-left"
                 data-testid="mobile-nav-experience"
               >
                 Experience
               </button>
-              <button 
+              <button
                 onClick={() => scrollToSection('skills')}
                 className="text-muted-foreground hover:text-foreground transition-colors text-left"
                 data-testid="mobile-nav-skills"
               >
                 Skills
               </button>
-              <button 
+              <button
                 onClick={() => scrollToSection('projects')}
                 className="text-muted-foreground hover:text-foreground transition-colors text-left"
                 data-testid="mobile-nav-projects"
               >
                 Projects
               </button>
-              <button 
+              <button
                 onClick={() => scrollToSection('contact')}
                 className="text-muted-foreground hover:text-foreground transition-colors text-left"
                 data-testid="mobile-nav-contact"

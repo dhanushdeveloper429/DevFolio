@@ -6,7 +6,7 @@ const commands = [
   { command: 'ls -la ~/experience/', output: ['anthem_2019-present/', 'american_express_2018-2019/', 'molina_healthcare_2018/', 'anthem_2017-2018/', 'macys_2015-2017/'] },
   { command: 'whoami', output: ['senior_developer'] },
   { command: 'ps aux | grep passion', output: ['coding    1337  0.0  99.9  building_awesome_software'] },
-  { command: 'uptime', output: ['7+ years of enterprise development experience'] }
+  { command: 'uptime', output: ['9+ years of enterprise development experience'] }
 ];
 
 export default function TerminalSimulator() {
@@ -18,10 +18,10 @@ export default function TerminalSimulator() {
 
   useEffect(() => {
     const currentCommand = commands[currentCommandIndex];
-    
+
     if (isTyping) {
       const targetText = `$ ${currentCommand.command}`;
-      
+
       if (displayText.length < targetText.length) {
         const timer = setTimeout(() => {
           setDisplayText(targetText.slice(0, displayText.length + 1));
@@ -30,14 +30,14 @@ export default function TerminalSimulator() {
       } else {
         setIsTyping(false);
         setShowOutput(true);
-        
+
         const outputTimer = setTimeout(() => {
           setShowOutput(false);
           setDisplayText('');
           setIsTyping(true);
           setCurrentCommandIndex((prev) => (prev + 1) % commands.length);
         }, 3000);
-        
+
         return () => clearTimeout(outputTimer);
       }
     }
@@ -47,7 +47,7 @@ export default function TerminalSimulator() {
     const cursorTimer = setInterval(() => {
       setShowCursor(prev => !prev);
     }, 500);
-    
+
     return () => clearInterval(cursorTimer);
   }, []);
 
@@ -57,13 +57,13 @@ export default function TerminalSimulator() {
         <Terminal className="w-4 h-4 mr-2" />
         <span>developer@portfolio:~</span>
       </div>
-      
+
       <div className="text-green-400 min-h-[120px]">
         <div className="flex items-center">
           <span className="text-cyan-400">{displayText}</span>
           {showCursor && <span className="bg-green-400 w-2 h-4 ml-1 animate-pulse"></span>}
         </div>
-        
+
         {showOutput && (
           <div className="mt-2 text-gray-300">
             {commands[currentCommandIndex].output.map((line, index) => (

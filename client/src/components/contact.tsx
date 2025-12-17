@@ -61,7 +61,7 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.subject || !formData.message) {
       toast({
@@ -84,7 +84,7 @@ export default function Contact() {
             Ready to discuss your next project or opportunity? Let's connect!
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 gap-12">
           {/* Terminal Contact Info */}
           <div className="bg-black/90 border border-primary shadow-[0_0_5px_rgba(59,130,246,0.2)] dark:border-cyan-400 dark:shadow-[0_0_10px_rgba(0,255,255,0.3)] rounded-lg p-6 font-mono text-sm backdrop-blur-sm">
@@ -92,55 +92,55 @@ export default function Contact() {
               <Mail className="w-4 h-4 mr-2" />
               <span>contact_info@portfolio:~</span>
             </div>
-            
+
             <div className="space-y-2">
               <div className="text-blue-400">[INFO] Personal contact protocol initialized</div>
               <div className="text-gray-300">─────────────────────────────────────────</div>
-              
+
               <div className="space-y-1">
                 <div className="text-cyan-400 dark:text-cyan-400">$ cat contact/email.txt</div>
-                <div className="text-green-400 ml-4" data-testid="contact-email">→ john.developer@email.com</div>
-                
+                <div className="text-green-400 ml-4" data-testid="contact-email">→ dhanushkasrinivas.katuri@email.com</div>
+
                 <div className="text-cyan-400 dark:text-cyan-400">$ cat contact/phone.txt</div>
-                <div className="text-green-400 ml-4" data-testid="contact-phone">→ +1 (555) 123-4567</div>
-                
+                <div className="text-green-400 ml-4" data-testid="contact-phone">→ +1 (408) 753-7839</div>
+
                 <div className="text-cyan-400 dark:text-cyan-400">$ cat contact/location.txt</div>
-                <div className="text-green-400 ml-4" data-testid="contact-location">→ Atlanta, GA</div>
+                <div className="text-green-400 ml-4" data-testid="contact-location">→ Chespeake, VA</div>
               </div>
-              
+
               <div className="text-gray-300 mt-4">─────────────────────────────────────────</div>
               <div className="text-blue-400">[SOCIAL] External connection endpoints:</div>
-              
+
               <div className="space-y-1 mt-2">
                 <div className="flex items-center">
                   <span className="text-cyan-400 dark:text-cyan-400">$ curl -X GET </span>
-                  <a 
-                    href="https://linkedin.com" 
-                    target="_blank" 
+                  <a
+                    href="https://www.linkedin.com/in/d-srinivas-k-756b03124/"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-green-400 hover:text-primary transition-colors ml-1"
                     data-testid="social-linkedin"
                   >
-                    linkedin.com/in/profile
+                    linkedin.com/in/d-srinivas-k-756b03124/
                   </a>
                 </div>
                 <div className="flex items-center">
                   <span className="text-cyan-400 dark:text-cyan-400">$ git clone </span>
-                  <a 
-                    href="https://github.com" 
-                    target="_blank" 
+                  <a
+                    href="https://github.com/dhanushdeveloper429"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-green-400 hover:text-primary transition-colors ml-1"
                     data-testid="social-github"
                   >
-                    github.com/developer
+                    github.com/dhanushdeveloper429
                   </a>
                 </div>
                 <div className="flex items-center">
                   <span className="text-cyan-400 dark:text-cyan-400">$ ping </span>
-                  <a 
-                    href="https://twitter.com" 
-                    target="_blank" 
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-green-400 hover:text-primary transition-colors ml-1"
                     data-testid="social-twitter"
@@ -149,7 +149,7 @@ export default function Contact() {
                   </a>
                 </div>
               </div>
-              
+
               <div className="text-gray-300 mt-4">─────────────────────────────────────────</div>
               <div className="text-yellow-400">[STATUS] All communication channels online</div>
               <div className="text-green-400">[READY] Awaiting incoming connections...</div>
@@ -217,8 +217,8 @@ export default function Contact() {
                     data-testid="input-message"
                   />
                 </div>
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   className="w-full"
                   disabled={contactMutation.isPending}
                   data-testid="button-submit"
