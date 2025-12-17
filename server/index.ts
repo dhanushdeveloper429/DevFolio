@@ -64,7 +64,7 @@ const setupApp = async () => {
 };
 
 // Only listen if not running in Vercel (local dev or traditional hosting)
-if (process.env.NODE_ENV !== "production" || !process.env.VERCEL) {
+if (process.env.NODE_ENV !== "production" || (!process.env.VERCEL && !process.env.NETLIFY)) {
   (async () => {
     const server = await setupApp();
     const port = parseInt(process.env.PORT || '5001', 10);
