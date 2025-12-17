@@ -26,15 +26,8 @@ export default function Hero() {
     }
   };
 
-  const handleDownloadResume = async () => {
-    try {
-      const response = await fetch('/api/resume/download');
-      const data = await response.json();
-      // In a real implementation, this would trigger a file download
-      console.log('Resume download:', data);
-    } catch (error) {
-      console.error('Failed to download resume:', error);
-    }
+  const handleDownloadResume = () => {
+    window.location.href = "https://drive.usercontent.google.com/u/1/uc?id=1T41ZuMP2eev2poc36nx3bgBFCpIutfti&export=download";
   };
 
   return (

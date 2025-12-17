@@ -6,7 +6,7 @@ const commands = [
   { command: 'ls -la ~/experience/', output: ['anthem_2019-present/', 'american_express_2018-2019/', 'molina_healthcare_2018/', 'anthem_2017-2018/', 'macys_2015-2017/'] },
   { command: 'whoami', output: ['senior_developer'] },
   { command: 'ps aux | grep passion', output: ['coding    1337  0.0  99.9  building_awesome_software'] },
-  { command: 'uptime', output: ['9+ years of enterprise development experience'] }
+  { command: 'uptime', output: ['10 years of enterprise development experience'] }
 ];
 
 export default function TerminalSimulator() {
@@ -55,7 +55,7 @@ export default function TerminalSimulator() {
     <div className="bg-black/90 border border-cyan-400/30 rounded-lg p-6 font-mono text-sm backdrop-blur-sm" data-testid="terminal-simulator">
       <div className="flex items-center mb-4 text-cyan-400">
         <Terminal className="w-4 h-4 mr-2" />
-        <span>developer@portfolio:~</span>
+        <span>dhanushkadeveloper@portfolio:~</span>
       </div>
 
       <div className="text-green-400 min-h-[120px]">

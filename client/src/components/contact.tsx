@@ -99,7 +99,7 @@ export default function Contact() {
 
               <div className="space-y-1">
                 <div className="text-cyan-400 dark:text-cyan-400">$ cat contact/email.txt</div>
-                <div className="text-green-400 ml-4" data-testid="contact-email">→ dhanushkasrinivas.katuri@email.com</div>
+                <div className="text-green-400 ml-4" data-testid="contact-email">→ dhanushkasrinivas.katuri@gmail.com</div>
 
                 <div className="text-cyan-400 dark:text-cyan-400">$ cat contact/phone.txt</div>
                 <div className="text-green-400 ml-4" data-testid="contact-phone">→ +1 (408) 753-7839</div>
@@ -160,7 +160,7 @@ export default function Contact() {
           <Card>
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="firstName" className="text-sm font-medium">First Name</Label>
                     <Input
@@ -168,7 +168,7 @@ export default function Contact() {
                       type="text"
                       value={formData.firstName}
                       onChange={(e) => handleInputChange('firstName', e.target.value)}
-                      className="mt-2"
+                      className="mt-2 bg-background/50 border-primary/20 focus:border-primary"
                       data-testid="input-firstname"
                     />
                   </div>
@@ -179,7 +179,7 @@ export default function Contact() {
                       type="text"
                       value={formData.lastName}
                       onChange={(e) => handleInputChange('lastName', e.target.value)}
-                      className="mt-2"
+                      className="mt-2 bg-background/50 border-primary/20 focus:border-primary"
                       data-testid="input-lastname"
                     />
                   </div>
@@ -191,7 +191,7 @@ export default function Contact() {
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
-                    className="mt-2"
+                    className="mt-2 bg-background/50 border-primary/20 focus:border-primary"
                     data-testid="input-email"
                   />
                 </div>
@@ -202,7 +202,7 @@ export default function Contact() {
                     type="text"
                     value={formData.subject}
                     onChange={(e) => handleInputChange('subject', e.target.value)}
-                    className="mt-2"
+                    className="mt-2 bg-background/50 border-primary/20 focus:border-primary"
                     data-testid="input-subject"
                   />
                 </div>
@@ -213,7 +213,7 @@ export default function Contact() {
                     rows={5}
                     value={formData.message}
                     onChange={(e) => handleInputChange('message', e.target.value)}
-                    className="mt-2"
+                    className="mt-2 bg-background/50 border-primary/20 focus:border-primary"
                     data-testid="input-message"
                   />
                 </div>

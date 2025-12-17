@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 export const personalData = {
     name: "Dhanush Developer",
     role: "Senior Enterprise Software Specialist",
-    email: "dhanushkasrinivas.katuri@email.com",
+    email: "dhanushkasrinivas.katuri@gmail.com",
     phone: "+1 (408) 753-7839",
     address: "Chespeake, VA",
     socials: {
@@ -15,20 +15,20 @@ export const personalData = {
         title: "About Me",
         subtitle: "Passionate about building robust, scalable software solutions that drive business value and enhance user experiences.",
         description: [
-            "With over 9 years of experience in enterprise software development, I've had the privilege of working with industry leaders including Anthem, American Express, Molina Healthcare, and Macy's. My expertise spans full-stack development, system architecture, and leading cross-functional teams to deliver mission-critical applications.",
+            "With over 10 years of experience in enterprise software development, I've had the privilege of working with industry leaders including Anthem, American Express, Molina Healthcare, and Macy's. My expertise spans full-stack development, system architecture, and leading cross-functional teams to deliver mission-critical applications.",
             "I specialize in building scalable, maintainable solutions that meet complex business requirements while ensuring optimal performance and security. My approach combines technical excellence with strategic thinking to drive meaningful business outcomes.",
         ],
     },
     hero: {
         title: "Senior Developer",
         description: [
-            "Enterprise software specialist with 9+ years of experience",
+            "Enterprise software specialist with 10 years of experience",
             "Architect of scalable solutions and system architecture",
             "Fortune 500 team leadership expertise"
         ]
     },
     stats: {
-        experience: "9+",
+        experience: "10",
         companies: "5"
     },
     skills: [

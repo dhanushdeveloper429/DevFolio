@@ -18,7 +18,7 @@ export default function Navigation() {
     <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-primary shadow-[0_0_5px_rgba(59,130,246,0.2)] dark:border-cyan-400 dark:shadow-[0_0_10px_rgba(0,255,255,0.3)] z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="font-bold text-xl text-primary dark:drop-shadow-[0_0_10px_currentColor]" data-testid="logo">FULL STACK.PORTFOLIO</div>
+          <div className="font-bold text-xl text-primary dark:drop-shadow-[0_0_10px_currentColor]" data-testid="logo">DHANUSHKA FULL STACK.PORTFOLIO</div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
