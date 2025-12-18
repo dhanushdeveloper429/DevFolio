@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Clock } from "@/components/clock";
+import { WeatherWidget } from "@/components/weather-widget";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -21,6 +23,7 @@ export default function Navigation() {
           <div className="font-bold text-xl text-primary dark:drop-shadow-[0_0_10px_currentColor]" data-testid="logo">DHANUSHKA FULL STACK.PORTFOLIO</div>
 
           {/* Desktop Navigation */}
+          {/* Desktop Navigation Links (Centered) */}
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection('about')}
@@ -57,6 +60,12 @@ export default function Navigation() {
             >
               Contact
             </button>
+          </div>
+
+          {/* Desktop Utilities (Right End) */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Clock />
+            <WeatherWidget />
             <ThemeToggle />
           </div>
 
