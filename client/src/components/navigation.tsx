@@ -64,9 +64,9 @@ export default function Navigation() {
 
           {/* Desktop Utilities (Right End) */}
           <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
             <Clock />
             <WeatherWidget />
-            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button and Theme Toggle */}
