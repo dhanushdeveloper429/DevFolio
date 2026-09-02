@@ -1,5 +1,5 @@
 Uploaded an image
-
+https://chatgpt.com/share/6a98465c-da3c-83ea-a575-4a76389c029f
 Sure — phrase it as a real scenario followed by one clear question.
 
 Scenario 1 — Saturday holiday
