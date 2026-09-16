@@ -1,94 +1,118 @@
-This part adds an important refinement to the solution. The one-liner you can send to Justin/team should stay high-level and avoid getting into implementation details.
+Hi Team,
 
-Suggested one-liner
+As discussed, below is the consolidated summary of the agreed changes, scope, and next steps.
 
-We’re designing a unified Policy Management UI where users can select Outpatient, Inpatient, or Program Services and configure the policy’s identification/matching criteria and post-decision actions, with fields dynamically presented based on the selected policy type.
+1. Stories / Scope
 
-If you want it slightly more technical:
+Nagose will create two stories:
 
-The proposed solution will use a unified policy configuration UI with Outpatient, Inpatient, and Program Services options, separating transaction identification/matching from post-decision actions, while allowing configurable attributes such as procedure codes to be optionally enabled and made mandatory when selected.
+* Provider Level Changes
+* Profile Level Changes
 
-The important UI decision from the discussion
+All agreed changes will be captured under these two stories and targeted for the October release.
 
-I think the second version of the design is better than three separate tabs.
+2. Provider Level Changes
 
-Instead of:
+The following will remain at the provider level:
 
-Tabs
+* Late Notification
+* Readmit Days
+* Effective Termination Date
 
-Outpatient
-Inpatient
-Program Services
+3. Profile Level Changes
 
-Use something like:
+The following will be moved/added at the profile level:
 
-Policy Type
-[ Outpatient ] [ Inpatient ] [ Program Services ]
+* Late Notification
+* Diagnosis Code – new profile-level attribute
+* Effective Termination Date – new profile-level field
+* ERISA Indicator – optional Yes/No field under Funding Type
+* Request Type – optional field with no hierarchy or priority
+* Diagnosis Code will follow the same approach as Procedure Code and support comma-separated values.
+* Product ID, Group ID, Diagnosis Code, Procedure Code, and other applicable fields will support comma-separated entry instead of requiring individual entries.
 
-Then dynamically show the relevant fields.
+For IP, OP, IOP, and PHP, Request Type will remain optional.
 
-For example:
+4. Proposed Grid
 
-Policy Type	Procedure Code
-Outpatient	Can be enabled; if enabled → mandatory
-Inpatient	Optional
-Program Services	Optional
+The proposed grid will display:
 
-That avoids hard-coding the assumption that procedure code only belongs to outpatient. As they pointed out, inpatient and IOP/PHP transactions can potentially have procedure codes too.
+* Profile Name
+* State
+* Authorization Type
+* Case Type
+* Line of Business
+* Level of Care
+* Type of Service
+* Procedure Code
 
-And the overall UI should have two major sections
+Procedure Code will be included at the grid level to make it easier to identify profiles that are primarily associated with a procedure code.
 
-1. Identification / Matching
+The remaining details will be available on the Profile Details page, including:
 
-This defines "Does this policy apply to this incoming transaction?"
+* Product ID
+* Group ID
+* Procedure Codes
+* Days
+* Units
+* Readmit Days
+* Late Notification
+* Audit Information
+* Other applicable profile details
 
-Examples:
+5. Sorting / Filtering
 
-Policy type
-Provider/NPI
-State
-Plan
-Procedure code
-ICD
-Other transaction attributes
-Dynamic expressions/rules
+To make the profile grid easier to use as the number of profiles grows, we will look at adding sorting and filtering functionality consistent with the existing UMD/ACME experience.
 
-2. Post-Decision / Response
+The preferred approach is to allow users to filter fields such as State, Authorization Type, Case Type, Line of Business, Level of Care, Type of Service, and Procedure Code, similar to an Excel-style filter.
 
-This defines "What should happen after the policy matches?"
+If the same filtering component is not technically compatible, we will evaluate the most appropriate search/filter approach that provides equivalent functionality.
 
-Examples:
+6. Clone Profile
 
-Stage
-RTA
-Perform readmit check
-Other downstream actions
+Clone Profile functionality will not be included in the current October scope.
 
-So the conceptual layout is:
+Since the profiles are expected to have provider/market-specific details and may differ in areas such as level of care, days, units, and other configuration values, the team agreed that manual profile creation is acceptable for the current scope.
 
-Create Policy
-────────────────────────────────────
+If clone functionality becomes necessary for the future Gold Card/Red Card work, it can be considered as part of that separately funded effort and included in the corresponding LOE.
 
-Policy Type
-[ Outpatient ] [ Inpatient ] [ Program Services ]
+7. Medicaid / Line of Business
 
-IDENTIFICATION / MATCHING
-────────────────────────────────────
-Provider              [             ]
-State                 [             ]
-Procedure Code        [ + Add       ]
-ICD                   [ + Add       ]
-Other Attributes      [             ]
+Medicaid has been added as a Line of Business in Production. We will confirm that the corresponding requirement is reflected in the profile-level configuration and applicable October changes.
 
-[ Configure Expression ]
+8. Existing / Release Items
 
-POST-DECISION ACTION
-────────────────────────────────────
-When policy matches:
-[ Stage ▼ ]
-[ RTA ▼ ]
-[ Readmit Check ▼ ]
+* Type of Service still requires the discussed changes.
+* Line of Business is currently appended to Production, and the related changes have already been included as part of the September release.
+* The remaining agreed changes will be implemented as part of the October release.
+* Nothing from the current scope is planned to be pushed beyond October at this time.
 
-              [Save Policy]
+9. ICD / Gold Card Auditing
 
-The key architectural principle: don't make the UI itself responsible for determining which fields are valid forever. Let the policy type control the default/required behavior, while still allowing common attributes such as procedure code to be explicitly added where applicable.
+The current implementation validates ICD requests against the applicable profile and determines Gold Card eligibility.
+
+If the request is Gold Card eligible, that eligibility is returned to the Gateway, and the request does not proceed through the normal UMD processing flow. The applicable information is also being captured for auditing purposes.
+
+Nicole will follow up with Amit to confirm how the ICD cases and audit information can be viewed/reported. No additional scope is being added to the current stories for this item.
+
+10. Bulk Operations
+
+The following functionality has also been provided:
+
+* Excel bulk upload
+* Multi-select
+* Bulk delete
+* NPI-specific selection
+* Bulk termination based on a specified termination date
+
+Next Steps
+
+* Nagose to create the two stories for Provider Level Changes and Profile Level Changes.
+* Team to confirm the final requirements captured above.
+* Dhanushka to proceed with the agreed changes based on the confirmed stories.
+* Remaining agreed scope will be targeted for the October release.
+
+Please review and let us know if anything is missing or needs to be updated.
+
+Thanks,
+Dhanushka
